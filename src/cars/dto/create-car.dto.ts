@@ -22,12 +22,12 @@ export class CreateCarDto {
   @MaxLength(20)
   licensePlate: string;
 
-  @ApiProperty({ description: 'Daily rental rate' })
+  @ApiProperty({ description: 'Car renting price per day' })
   @IsNumber()
   @Min(0)
-  dailyRate: number;
+  price: number;
 
-  @ApiProperty({ description: 'Car description', required: false })
+  @ApiProperty({ description: 'Car description'})
   @IsOptional()
   @IsString()
   description?: string;
@@ -37,19 +37,19 @@ export class CreateCarDto {
   @IsBoolean()
   isAvailable?: boolean;
 
-  @ApiProperty({ description: 'Car color', required: false, maxLength: 50 })
+  @ApiProperty({ description: 'Car color'})
   @IsOptional()
   @IsString()
   @MaxLength(50)
   color?: string;
 
-  @ApiProperty({ description: 'Fuel type', required: false, maxLength: 20 })
+  @ApiProperty({ description: 'Fuel type'})
   @IsOptional()
   @IsString()
   @MaxLength(20)
   fuelType?: string;
 
-  @ApiProperty({ description: 'Car mileage', required: false })
+  @ApiProperty({ description: 'Car mileage'})
   @IsOptional()
   @IsNumber()
   @Min(0)
@@ -58,8 +58,4 @@ export class CreateCarDto {
   @ApiProperty({ description: 'Category ID' })
   @IsNumber()
   categoryId: number;
-
-  @ApiProperty({ description: 'Owner ID (User ID)' })
-  @IsNumber()
-  ownerId: number;
 }

@@ -1,6 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn} from 'typeorm';
-import { User } from '../../users/entities/user.entity';
-import { Car } from '../../cars/entities/car.entity';
+import { Car } from 'src/cars/entities/car.entity';
+import { User } from 'src/users/entities/user.entity';
+
 
 @Entity()
 export class Rating {

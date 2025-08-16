@@ -25,7 +25,7 @@ export class AuthService {
     }
     const passwordMatch = await compare(password, user.password);
     if (!passwordMatch) {
-      throw new UnauthorizedException('Invalid Credentials');
+      throw new UnauthorizedException('Error on the password or email!');
     }
 
     return { id: user.id, email: user.email };
@@ -74,13 +74,10 @@ export class AuthService {
   }
 
   async validateJwtUser(userId: number) {
-    console.log('AuthService - Validating JWT user with ID:', userId); // Debug log
     const user = await this.userService.findOne(userId);
     if (!user) {
-      console.log('AuthService - User not found for ID:', userId); // Debug log
       throw new UnauthorizedException('User not found');
     }
-    console.log('AuthService - User found:', { id: user.id, role: user.role }); // Debug log
     const currentUser: CurrentUser = { id: user.id, role: user.role };
     return currentUser;
   }

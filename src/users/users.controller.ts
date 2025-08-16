@@ -34,6 +34,7 @@ interface RequestWithUser {
     return this.usersService.findAll();
   }
 
+  @ApiBearerAuth('access-token')
   @Roles(UserRole.SUPER_ADMIN, UserRole.ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
@@ -42,6 +43,7 @@ interface RequestWithUser {
     return this.usersService.findOne(+id);
   }
 
+  @ApiBearerAuth('access-token')
   @Roles(UserRole.SUPER_ADMIN, UserRole.ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)

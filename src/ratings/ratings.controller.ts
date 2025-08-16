@@ -14,11 +14,11 @@ interface RequestWithUser {
 @Controller('ratings')
 export class RatingsController {
   constructor(private readonly ratingsService: RatingsService) {}
-
+  @ApiBearerAuth('access-token')
   @Post()
   @UseGuards(JwtAuthGuard)
   create(@Req() req: RequestWithUser, @Body() createRatingDto: CreateRatingDto) {
-    return this.ratingsService.create({ ...createRatingDto, userId: req.user.id })
+    return this.ratingsService.create(createRatingDto, req.user.id)
   }
 
   @Get()
@@ -31,12 +31,14 @@ export class RatingsController {
     return this.ratingsService.findOne(+id)
   }
 
+  @ApiBearerAuth('access-token')
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRatingDto: UpdateRatingDto, @Req() req: RequestWithUser) {
     return this.ratingsService.update(+id, updateRatingDto, req.user);
   }
 
+  @ApiBearerAuth('access-token')
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Req() req: RequestWithUser) {

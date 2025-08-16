@@ -16,19 +16,18 @@ export class CarsService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-async create(createCarDto: CreateCarDto, currentUser: User) {
-  if (currentUser.role !== UserRole.ARENDATOR) {
-    throw new ForbiddenException('Only users with ARENDATOR role can create cars')
+  async create(createCarDto: CreateCarDto, currentUser: User) {
+    if (currentUser.role !== UserRole.ARENDATOR) {
+      throw new ForbiddenException('Only users with ARENDATOR role can create cars');
+    }
+
+    const car = this.carRepository.create({
+      ...createCarDto,
+      owner: currentUser,
+    });
+
+    return this.carRepository.save(car);
   }
-
-  const car = this.carRepository.create({
-    ...createCarDto,
-    owner: currentUser
-  });
-
-  return this.carRepository.save(car);
-}
-
 
   findAll() {
     return this.carRepository.find({

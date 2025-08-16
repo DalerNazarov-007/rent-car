@@ -1,6 +1,7 @@
+import { Car } from 'src/cars/entities/car.entity';
+import { User } from 'src/users/entities/user.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { User } from '../../users/entities/user.entity';
-import { Car } from '../../cars/entities/car.entity';
+
 
 @Entity()
 export class RentalHistory {
@@ -13,10 +14,10 @@ export class RentalHistory {
   @Column()
   userId: number;
 
-  @ManyToOne(() => Car, car => car.rentalHistories, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Car, car => car.rentalHistories)
   car: Car;
 
-  @ManyToOne(() => User, user => user.rentalHistories, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, user => user.rentalHistories)
   user: User;
 
   @Column({ type: 'date' })

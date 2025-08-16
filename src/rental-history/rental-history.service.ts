@@ -19,7 +19,7 @@ export class RentalHistoryService {
 
   async findAll() {
     return await this.rentalHistoryRepo.find({
-      relations: ['user', 'product'], // if you want related data
+      relations: ['user', 'car'],
     });
   }
 

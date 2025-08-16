@@ -1,4 +1,5 @@
 {
+  // "$schema": "https://json.schemastore.org/tsconfig", // Uncomment if you want schema validation and the URL is accessible
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",

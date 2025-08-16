@@ -6,12 +6,14 @@ import { UserRole } from 'src/common/enums/user-role.enum';
 import { RolesGuard } from 'src/auth/guards/roles/roles.guard';
 import { Roles } from 'src/decorators/role.decorators';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('rental-history')
 export class RentalHistoryController {
   constructor(private readonly rentalHistoryService: RentalHistoryService) {}
 
-  @Roles(UserRole.ADMIN)
+  @ApiBearerAuth('access-token')
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -19,7 +21,8 @@ export class RentalHistoryController {
     return this.rentalHistoryService.create(createDto);
   }
 
-  @Roles(UserRole.ADMIN)
+  @ApiBearerAuth('access-token')
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
   @Get()
@@ -27,7 +30,8 @@ export class RentalHistoryController {
     return this.rentalHistoryService.findAll();
   }
 
-  @Roles(UserRole.ADMIN)
+  @ApiBearerAuth('access-token')
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
@@ -38,7 +42,8 @@ export class RentalHistoryController {
     return this.rentalHistoryService.update(+id, updateDto);
   }
 
-  @Roles(UserRole.ADMIN)
+  @ApiBearerAuth('access-token',)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
   @Delete(':id')

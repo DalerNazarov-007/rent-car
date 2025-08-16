@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards, Req } from '@nestjs/common';
-import { ApiTags} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
@@ -13,6 +13,7 @@ import { UserRole } from 'src/common/enums/user-role.enum';
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
+  @ApiBearerAuth('access-token')
   @Roles(UserRole.ARENDATOR)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
@@ -31,6 +32,7 @@ export class CarsController {
     return this.carsService.findOne(+id);
   }
 
+  @ApiBearerAuth('access-token')
   @Roles(UserRole.ARENDATOR)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
@@ -39,6 +41,7 @@ export class CarsController {
     return this.carsService.update(+id, updateCarDto, req.user);
   }
 
+  @ApiBearerAuth('access-token')
   @Roles(UserRole.ARENDATOR, UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)

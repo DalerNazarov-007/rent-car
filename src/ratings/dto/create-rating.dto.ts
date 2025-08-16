@@ -8,14 +8,10 @@ export class CreateRatingDto {
   @Max(5)
   rating: number;
 
-  @ApiProperty({ description: 'Review text', required: false })
+  @ApiProperty({ description: 'Review text'})
   @IsOptional()
   @IsString()
   review?: string;
-
-  @ApiProperty({ description: 'User ID' })
-  @IsNumber()
-  userId: number;
 
   @ApiProperty({ description: 'Car ID' })
   @IsNumber()

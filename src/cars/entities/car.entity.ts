@@ -1,8 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn} from 'typeorm';
-import { Category } from '../../categories/entities/category.entity';
-import { Rating } from '../../ratings/entities/rating.entity';
-import { User } from '../../users/entities/user.entity';
+
 import { RentalHistory } from 'src/rental-history/entities/rental-history.entity';
+import { Category } from 'src/categories/entities/category.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Rating } from 'src/ratings/entities/rating.entity';
 
 @Entity()
 export class Car {

@@ -1,8 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { UserRole } from '../../common/enums/user-role.enum';
-import { Rating } from '../../ratings/entities/rating.entity';
-import { Car } from '../../cars/entities/car.entity';
+
 import { RentalHistory } from 'src/rental-history/entities/rental-history.entity';
+import { UserRole } from 'src/common/enums/user-role.enum';
+import { Car } from 'src/cars/entities/car.entity';
+import { Rating } from 'src/ratings/entities/rating.entity';
 
 @Entity()
 export class User {
