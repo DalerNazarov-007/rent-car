@@ -7,6 +7,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { CarsModule } from './cars/cars.module';
 import { RatingsModule } from './ratings/ratings.module';
 import { RentalHistoryModule } from './rental-history/rental-history.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -28,5 +29,8 @@ import { RentalHistoryModule } from './rental-history/rental-history.module';
     RatingsModule,
     RentalHistoryModule,
   ],
+
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}
